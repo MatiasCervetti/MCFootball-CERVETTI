@@ -242,12 +242,19 @@ function agregarAlCarrito(e) {
         productosEnCarrito.push(productoAgregado);
     }
 
-    actualizarNumero();
+    actualizarNumerito();
 
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 }
 
-function actualizarNumero() {
-    let nuevoNumero = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-    numerito.innerText = nuevoNumero;
+function actualizarNumerito() {
+    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    numero.innerText = nuevoNumerito;
 }
+
+
+addEventListener("DOMContentLoaded", (event) => {cargarProductos(productos);});
+
+cargarProductos(productos)
+
+

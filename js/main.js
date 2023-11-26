@@ -1,156 +1,12 @@
-const productos = [
-    
-        {
-            "id": "camiseta-01",
-            "titulo": "Manchester City Actual",
-            "imagen": "./img/temporadaActual/city-actual.webp",
-            "categoria": {
-                "nombre": "Temporada 2023/24",
-                "id": "Camiseta Actual"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "camiseta-02",
-            "titulo": "Liverpool Actual",
-            "imagen": "./img/temporadaActual/liverpool-actual.webp",
-            "categoria": {
-                "nombre": "Temporada 2023/24",
-                "id": "Camiseta Actual"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "camiseta-03",
-            "titulo": "Real Madrid Actual",
-            "imagen": "./img/temporadaActual/madrid-actual.webp",
-            "categoria": {
-                "nombre": "Temporada 2023/24",
-                "id": "Camiseta Actual"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "camiseta-04",
-            "titulo": "River Plate Actual",
-            "imagen": "./img/temporadaActual/river-actual.webp",
-            "categoria": {
-                "nombre": "Temporada 2023/24",
-                "id": "Camiseta Actual"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "camiseta-05",
-            "titulo": "Manchester United Actual",
-            "imagen": "./img/temporadaActual/united-actual.jpg",
-            "categoria": {
-                "nombre": "Temporada 2023/24",
-                "id": "Camiseta Actual"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "seleccion-01",
-            "titulo": "Argentina Actual",
-            "imagen": "./img/SeleccionesNacionales/Argentina-actual.webp",
-            "categoria": {
-                "nombre": "Selecciones Nacionales",
-                "id": "Selecciones Nacionales"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "seleccion-02",
-            "titulo": "Italia Actual",
-            "imagen": "./img/SeleccionesNacionales/Italia-actual.webp",
-            "categoria": {
-                "nombre": "Selecciones Nacionales",
-                "id": "Selecciones Nacionales"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "seleccion-03",
-            "titulo": "Marruecos Actual",
-            "imagen": "./img/SeleccionesNacionales/Marruecos-actual.webp",
-            "categoria": {
-                "nombre": "Selecciones Nacionales",
-                "id": "Selecciones Nacionales"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "seleccion-04",
-            "titulo": "Polonia Actual",
-            "imagen": "./img/SeleccionesNacionales/Polonia-actual.webp",
-            "categoria": {
-                "nombre": "Selecciones Nacionales",
-                "id": "Selecciones Nacionales"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "seleccion-05",
-            "titulo": "Brasil 3er Equipación",
-            "imagen": "./img/SeleccionesNacionales/TerceraBrasil-acutal.webp",
-            "categoria": {
-                "nombre": "Selecciones Nacionales",
-                "id": "Selecciones Nacionales"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "Retro-01",
-            "titulo": "Argentina Retro",
-            "imagen": "./img/camisetaRetro/Argentina-retro.webp",
-            "categoria": {
-                "nombre": "Camisetas Retro",
-                "id": "Camisetas Retro"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "Retro-02",
-            "titulo": "FC Barcelona Retro",
-            "imagen": "./img/camisetaRetro/Barca-retro.jpg",
-            "categoria": {
-                "nombre": "Camisetas Retro",
-                "id": "Camisetas Retro"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "Retro-03",
-            "titulo": "Chelsea FC Retro",
-            "imagen": "./img/camisetaRetro/Chelsea-retro.jpg",
-            "categoria": {
-                "nombre": "Camisetas Retro",
-                "id": "Camisetas Retro"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "Retro-04",
-            "titulo": "Paises Bajos Retro",
-            "imagen": "./img/camisetaRetro/Holanda-retro.webp",
-            "categoria": {
-                "nombre": "Camisetas Retro",
-                "id": "Camisetas Retro"
-            },
-            "precio": 10000
-        },
-        {
-            "id": "Retro-05",
-            "titulo": "AC Milan Retro",
-            "imagen": "./img/camisetaRetro/Milan-retro.webp",
-            "categoria": {
-                "nombre": "Camisetas Retro",
-                "id": "Camisetas Retro"
-            },
-            "precio": 10000
-        }
-    ];
+let productos = [];
+
+fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
+    })
+
 
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
@@ -230,6 +86,25 @@ if (productosEnCarritoLS) {
 
 function agregarAlCarrito(e) {
 
+    Toastify({
+        text: "Producto agregado",
+        duration: 3000,
+        close: true,
+        gravity: "top", 
+        position: "right", 
+        stopOnFocus: true, 
+        style: {
+            background: "linear-gradient(to right, #1c1b1d, #961818)",
+            borderRadius: "2rem",
+            textTransform: "uppercase",
+            fontSize: ".75rem"
+        },
+        offset: {
+            x: '1.5rem', 
+            y: '1.5rem'
+    },
+        onClick: function(){} 
+    }).showToast();
 
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);
